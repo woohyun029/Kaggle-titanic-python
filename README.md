@@ -1,31 +1,37 @@
-# 🚢 Kaggle Titanic - Data Analysis & Feature Engineering
+🚢 Kaggle Titanic: End-to-End Data Analysis
+데이터 가공부터 통계적 가설 검정, 모델링, SQL 쿼리까지 단계별 데이터 분석 프로세스 수행
+캐글(Kaggle)의 타이타닉 데이터를 활용하여 단순한 시각화를 넘어, 통계적 유의성을 검증하고 예측 모델을 구축하며 데이터 추출 능력을 배양하는 과정을 기록한 저장소입니다.
 
-캐글(Kaggle)의 타이타닉 데이터를 활용하여 데이터 분석의 기초부터 특성 공학(Feature Engineering)까지 학습하는 과정입니다.
+📌 프로젝트 목표
+- 데이터 기반 의사결정: 시각적 패턴을 통계적 수치(p-value)로 증명하는 분석 역량 강화
+- 통계적 추론: 변수 간 상관관계를 가설 검정을 통해 논리적으로 해석
+- 예측 모델링: 로지스틱 회귀를 통한 생존 확률 예측 및 모델 성능 지표 이해
+- 데이터 추출: SQL을 활용하여 실무 환경에서의 데이터 조회 및 집계 능력 확보
 
-## 📌 학습 목표
-- 데이터의 분포를 파악하는 탐색적 데이터 분석(EDA) 실습
-- 다양한 시각화 라이브러리(Matplotlib, Seaborn) 활용 능력 향상
-- 실제 모델 학습이 가능하도록 데이터를 정제하는 전처리 기술 습득
+📂 주요 수행 내용 및 파일 구성
+1️⃣ EDA & Feature Engineering
+결측치 정밀 전처리: 이름(Name)에서 호칭(Initial)을 정규표현식으로 추출하여 연령대(Age) 결측치를 논리적으로 보정
+왜도(Skewness) 해결: 요금(Fare) 데이터의 치우침을 해결하기 위해 로그 변환(Log Transform) 적용
+특성 생성: 가족 규모(FamilySize) 등 파생 변수 생성을 통한 생존 요인 다각화
+2️⃣ Inferential Statistics Test
+범주형 변수 검정: 성별(Sex), 객실 등급(Pclass)과 생존 여부 간의 관계를 **카이제곱 검정(Chi-square Test)**으로 유의성 확인
+수치형 변수 검정: 연령(Age), 요금(Fare)에 따른 생존 차이를 T-test 및 ANOVA를 통해 통계적으로 증명
+결과 해석: 시각적으로 보이는 차이가 우연인지, 통계적으로 유의미한지 판단하는 리터러시 함양
+3️⃣ Logistic Regression & Inference
+분류 모델 구현: Scikit-learn을 활용한 로지스틱 회귀(Logistic Regression) 모델 구축
+모델 평가: Accuracy뿐만 아니라 Precision, Recall, F1-score를 통해 모델의 다각적 성능 검증
+계수 해석: 각 변수의 계수(Coefficient)와 Odds Ratio를 통해 특정 요인이 생존 확률에 미치는 영향력 정량화
+4️⃣ SQL Queries for Data Analysis
+데이터 조회 역량: Pandas-SQL 연동을 통해 실제 DB 환경과 유사한 쿼리 실습
+복합 쿼리 작성: CASE WHEN을 활용한 연령대별 그룹화, GROUP BY와 HAVING을 이용한 생존 통계 산출
+실무 시뮬레이션: 데이터프레임을 테이블로 간주하고 조건 필터링 및 집계 수행
 
-## 📂 주요 수행 내용
+🛠 Tech Stack
+1. Language: Python, SQL
+2. Libraries: Pandas, NumPy, Matplotlib, Seaborn, Scipy(Stats), Scikit-learn
+3. Tools: Jupyter Notebook, Git/GitHub
 
-### 1. 탐색적 데이터 분석 (EDA)
-- **Survived:** 생존율 분포 확인 (Pie plot, Count plot)
-- **Pclass & Sex:** 객실 등급과 성별에 따른 생존율 차이 분석
-- **Age:** KDE plot을 이용한 연령별 밀도 분석 및 누적 생존율 시각화
-- **FamilySize:** SibSp와 Parch를 결합한 새로운 피처 생성 및 영향력 분석
-
-### 2. 특성 공학 & 전처리 (Feature Engineering)
-- **Initial 추출:** 정규표현식(`str.extract`)을 사용하여 이름에서 호칭을 분리하고, 이를 바탕으로 나이(`Age`)의 결측치를 정교하게 채움
-- **Fare 로그 변환:** 데이터 왜도(Skewness)를 줄이기 위해 로그 변환(`np.log`) 적용
-- **데이터 수치화:** 문자열 데이터를 `map` 함수와 `get_dummies`를 사용하여 숫자형 및 원-핫 인코딩으로 변환
-- **상관관계 분석:** Pearson Correlation Heatmap을 그려 변수 간 밀접도 확인
-
-## 🛠 사용 기술
-- **Data Analysis:** Pandas, NumPy
-- **Visualization:** Matplotlib, Seaborn, Missingno
-- **Development Environment:** Jupyter Notebook
-
-## 💡 배운 점
-- 단순한 결측치 채우기보다, 다른 변수와의 관계(호칭별 나이 평균 등)를 활용한 정밀한 전처리의 중요성을 배움.
-- 수치형 데이터의 치우침을 해결하는 로그 변환의 개념을 익힘.
+💡 Key Learnings (배운 점)
+1. 데이터 전처리의 힘: 단순히 데이터를 깨끗이 만드는 것을 넘어, 도메인 지식(호칭 등)을 활용해 소실된 정보를 복원하는 과정의 중요성을 깨달았습니다.
+2. 숫자 뒤의 논리: 시각화 결과에 안주하지 않고 통계 검정을 통해 '근거 있는 분석'을 수행하는 습관을 길렀습니다.
+3. 모델의 해석력: 예측 결과 자체보다 어떤 변수가 결과에 큰 영향을 미쳤는지(Feature Importance)를 파악하는 것이 분석가의 핵심 역할임을 배웠습니다.
